@@ -24,7 +24,7 @@
     $response =$twitter->setGetfield($getfield)
              ->buildOauth($url, $requestMethod)
              ->performRequest();
-$jsondata['algo'] = $response ;
+    $jsondata['algo'] ='casita roja';
 
 
     
