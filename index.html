@@ -41,7 +41,7 @@ $(document).ready(function() {
         dataType: 'json',
 
         success: function(data) { alert('hello!'); console.log(data);},
-        error: function(html) { alert(html); },
+        error: function(html) { alert(html); console.log('error');},
         beforeSend: setHeader
     });
 
