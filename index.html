@@ -28,44 +28,6 @@ window.twttr = (function(d, s, id) {
 
   return t;
 }(document, "script", "twitter-wjs"));
-
-$(document).ready(function() {
-    // Handler for .ready() called.
-
-    $.ajax({
-        url: "https://api.twitter.com/1.1/followers/ids.json?callback=?",
-        type: "GET",
-        data: { cursor: "-1", 
-                screen_name: "twitterapi" },
-        cache: false,
-        dataType: 'json',
-
-        success: function(data) { alert('hello!'); console.log(data);},
-        error: function(html) { alert(html); console.log('error');},
-        beforeSend: setHeader
-    });
-
-
-    function setHeader(xhr) {
-        if(xhr && xhr.overrideMimeType) {
-            xhr.overrideMimeType("application/j-son;charset=UTF-8");
-        }
-
-        //var nonce = freshNonce();
-        //var timestamp = freshTimestamp();
-        //var signature = sign(nonce,timestamp);
-
-        //alert(signature);
-        //alert(accessToken+"-"+consumerKey);
-        //alert(oauth_version+"-"+oauth_signature_method);
-      //  xhr.setRequestHeader('Authorization','OAuth oauth_consumer_key="BNzdCfnOGjW1v7sqJXeAd3Cew", oauth_nonce="qRSoJao5OupneqGKnvpfITH22nopDulDxAXltkebv6uhzdjMD7", oauth_signature="kQwyIhx78lZSk1wzAJlZeRsbjYTbBTZXBzcpvndLEJLY1%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp= "1359955650", oauth_token, "1012354410683527168-vYzIrkdncGmVbt5a4N7rIU0HohtFlP", oauth_version="1.0"');
-
-      xhr.setRequestHeader('Authorization','OAuth oauth_callback="http%3A%2F%2Flocalhost%3A8888",oauth_consumer_key="86a507bfc290e0cfa0e1813f555f1cb2",oauth_nonce="9c89f47ef962a69f7666a35e27d9e7da",oauth_signature="8lqJ6/hOPUeYFpKtuVGilg3lmew=",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1477181081",oauth_version="1.0"')
-    }
-
-});
-
-
 </script>
 </head>
 <body>
@@ -84,15 +46,6 @@ $(document).ready(function() {
     <button type="submit" class="btn btn-primary">Buscar</button>
   </form>
 </div>
-
-<a href="#" onclick="showHint('c')"> test </a>
-<div id="output">waiting for action</div>
-
-<p><b>Start typing a name in the input field below:</b></p>
-<form> 
-First name: <input type="text" onkeyup="showHint(this.value)">
-</form>
-<p>Suggestions: <span id="txtHint"></span></p>
 
 
 
