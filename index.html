@@ -40,9 +40,11 @@ $.ajax({
   type: "POST",
   url: "twittir.php",
   datatype: "html",
-  data: dataString,
   success: function(data) {
   alert(data);
+}
+  error: function() {
+  alert("error");
 }
 });
   return false;
