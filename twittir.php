@@ -32,4 +32,5 @@ foreach($string as $items)
         echo "Friends: ". $items['user']['friends_count']."<br />";
         echo "Listed: ". $items['user']['listed_count']."<br /><hr />";
     }
+ echo "fin"
 ?>
