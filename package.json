@@ -1,0 +1,27 @@
+{
+  "name": "npm_demo",
+  "version": "1.0.0",
+  "description": "ssa",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "test": "sasas"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alejandrophy/alejandrophy.github.io.git"
+  },
+  "keywords": [
+    "asas"
+  ],
+  "author": "asas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alejandrophy/alejandrophy.github.io/issues"
+  },
+  "homepage": "https://github.com/alejandrophy/alejandrophy.github.io#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "twit": "^2.2.10"
+  }
+}
