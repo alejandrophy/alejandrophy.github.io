@@ -30,12 +30,17 @@
 
 <a href="#" onclick="showHint('c')"> test </a>
 <div id="output">waiting for action</div>
+
+<p><b>Start typing a name in the input field below:</b></p>
+<form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form>
 <p>Suggestions: <span id="txtHint"></span></p>
 
 
 <script>
 function showHint(str) {
-	str="a";
+	
     if (str.length == 0) { 
         document.getElementById("txtHint").innerHTML = "";
         return;
