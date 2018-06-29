@@ -12,65 +12,58 @@
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <script type="text/javascript">
-//var oauth = require('oauth.js');
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
 
-var urlLink = 'https://api.twitter.com/1.1/statuses/update.json';
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
 
-var twitterStatus = "Sample tweet";
+  return t;
+}(document, "script", "twitter-wjs"));
 
-var oauth_consumer_key = "BNzdCfnOGjW1v7sqJXeAd3Cew";
-var consumerSecret = "qRSoJao5OupneqGKnvpfITH22nopDulDxAXltkebv6uhzdjMD7";
+$(document).ready(function() {
+    // Handler for .ready() called.
 
-var oauth_token = "1012354410683527168-vYzIrkdncGmVbt5a4N7rIU0HohtFlP";
-var tokenSecret = "kQwyIhx78lZSk1wzAJlZeRsbjYTbBTZXBzcpvndLEJLY1";
+    $.ajax({
+        url: "https://api.twitter.com/1.1/followers/ids.json?callback=?",
+        type: "GET",
+        data: { cursor: "-1", 
+                screen_name: "twitterapi" },
+        cache: false,
+        dataType: 'json',
 
-var nonce = oauth.nonce(32);
-var ts = Math.floor(new Date().getTime() / 1000);
-var timestamp = ts.toString();
+        success: function(data) { alert('hello!'); console.log(data);},
+        error: function(html) { alert(html); },
+        beforeSend: setHeader
+    });
 
-var accessor = {
-    "consumerSecret": consumerSecret,
-    "tokenSecret": tokenSecret
-};
 
-var params = {
-    "status": twitterStatus,
-    "oauth_consumer_key": oauth_consumer_key,
-    "oauth_nonce": nonce,
-    "oauth_signature_method": "HMAC-SHA1",
-    "oauth_timestamp": timestamp,
-    "oauth_token": oauth_token,
-    "oauth_version": "1.0"
-};
-var message = {
-    "method": "POST",
-    "action": urlLink,
-    "parameters": params
-};
+    function setHeader(xhr) {
+        if(xhr && xhr.overrideMimeType) {
+            xhr.overrideMimeType("application/j-son;charset=UTF-8");
+        }
 
-//lets create signature
-oauth.SignatureMethod.sign(message, accessor);
-var normPar = oauth.SignatureMethod.normalizeParameters(message.parameters);
-var baseString = oauth.SignatureMethod.getBaseString(message);
-var sig = oauth.getParameter(message.parameters, "oauth_signature") + "=";
-var encodedSig = oauth.percentEncode(sig); //finally you got oauth signature
+        //var nonce = freshNonce();
+        //var timestamp = freshTimestamp();
+        //var signature = sign(nonce,timestamp);
 
-$.ajax({
-    url: urlLink,
-    type: 'POST',
-    data: {
-        "status": twitterStatus
-    },
-    beforeSend: function(xhr){
-        xhr.setRequestHeader("Authorization",'OAuth oauth_consumer_key="'+oauth_consumer_key+'",oauth_signature_method="HMAC-SHA1",oauth_timestamp="' + timestamp + '",oauth_nonce="' + nonce + '",oauth_version="1.0",oauth_token="'+oauth_token+'",oauth_signature="' + encodedSig + '"');  
-   },
-   success: function(data) { 
-        alert("Tweeted!"); 
-   },
-   error:function(exception){
-       alert("Exeption:"+exception);
+        //alert(signature);
+        //alert(accessToken+"-"+consumerKey);
+        //alert(oauth_version+"-"+oauth_signature_method);
+        xhr.setRequestHeader('Authorization','OAuth oauth_consumer_key="BNzdCfnOGjW1v7sqJXeAd3Cew", oauth_nonce="qRSoJao5OupneqGKnvpfITH22nopDulDxAXltkebv6uhzdjMD7", oauth_signature="kQwyIhx78lZSk1wzAJlZeRsbjYTbBTZXBzcpvndLEJLY1%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp= "1359955650", oauth_token, "1012354410683527168-vYzIrkdncGmVbt5a4N7rIU0HohtFlP", oauth_version="1.0"');
     }
-  });
+
+});
+
+
 </script>
 </head>
 <body>
