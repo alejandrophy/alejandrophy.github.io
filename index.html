@@ -9,7 +9,24 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
+<script>
+function showHint(str) {
+	
+    if (str.length == 0) { 
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "try.php?q=" + str, true);
+        xmlhttp.send();
+    }
+}
+</script>
 </head>
 <body>
 
@@ -38,24 +55,7 @@ First name: <input type="text" onkeyup="showHint(this.value)">
 <p>Suggestions: <span id="txtHint"></span></p>
 
 
-<script>
-function showHint(str) {
-	
-    if (str.length == 0) { 
-        document.getElementById("txtHint").innerHTML = "";
-        return;
-    } else {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
-            }
-        };
-        xmlhttp.open("GET", "try.php?q=" + str, true);
-        xmlhttp.send();
-    }
-}
-</script>
+
 
 
 </body>
