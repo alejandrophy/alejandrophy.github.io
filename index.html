@@ -28,14 +28,45 @@ window.twttr = (function(d, s, id) {
 
   return t;
 }(document, "script", "twitter-wjs"));
+
+$('.jarallax').jarallax({
+    speed: 0.2
+});
 </script>
 </head>
 <body>
+  <style>
+  body, html {
+    height: 100%;
+    width: 100%;
+}
+p, label {
+    color: white;
+}
+.parallax { 
+    /* The image used */
+    background-image: url("https://images7.alphacoders.com/568/568756.jpg");
 
+    /* Set a specific height */
+    height: 100%; 
+    width: 100%;
+
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.jarallax {
+  height: 100vh;
+}
+</style>
+
+
+
+<div class="container parallax" >
 <p>Manuel Alejandro Castañeda García</p>
-
-
-<div class="container">
 
   <form action="/action_page.php">
     <div class="form-group">
@@ -47,12 +78,16 @@ window.twttr = (function(d, s, id) {
         </div>
         <div class="row">
           <div class="col-md-6 col-sm-12"> <input type="text" class="form-control" id="usr" name="username"></div>
-          <div class="col-md-3 col-sm-12">  <button type="submit" class="btn btn-primary">Buscar</button></div>
+          <div class="col-md-3 col-sm-12" style="text-align: center;">  <button type="submit" class="btn btn-primary" >Buscar</button></div>
          </div>
    </div>
    </div>
 
   </form>
+</div>
+
+<div class="parallax">
+    <img class="" src="<https://artescritorio.com/wp-content/uploads/2016/12/ciencia-3.jpg>" alt="">
 </div>
 
 
