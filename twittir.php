@@ -2,10 +2,10 @@
 require_once('TwitterAPIExchange.php');
 
 $settings = array(
-    'oauth_access_token' => "YOUR_OAUTH_ACCESS_TOKEN",
-    'oauth_access_token_secret' => "YOUR_OAUTH_ACCESS_TOKEN_SECRET",
-    'consumer_key' => "YOUR_CONSUMER_KEY",
-    'consumer_secret' => "YOUR_CONSUMER_SECRET"
+       'oauth_access_token' => "1012354410683527168-vYzIrkdncGmVbt5a4N7rIU0HohtFlP",
+	    'oauth_access_token_secret' => "kQwyIhx78lZSk1wzAJlZeRsbjYTbBTZXBzcpvndLEJLY1",
+	    'consumer_key' => "BNzdCfnOGjW1v7sqJXeAd3Cew",
+	    'consumer_secret' => "qRSoJao5OupneqGKnvpfITH22nopDulDxAXltkebv6uhzdjMD7"
 );
 
 
