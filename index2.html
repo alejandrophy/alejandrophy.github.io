@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Macastanedag</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</head>
+<body>
+
+<p>Manuel Alejandro Castañeda García</p>
+
+
+<div class="container">
+
+  <form action="/action_page.php">
+    <div class="form-group">
+      <label for="usr">Hashtag:</label>
+      <input type="text" class="form-control" id="usr" name="username">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Buscar</button>
+  </form>
+</div>
+
+<a class="twitter-timeline" href="https://twitter.com/TwitterDev/lists/national-parks?ref_src=twsrc%5Etfw">A Twitter List by TwitterDev</a> 
+<script type="text/javascript">
+	
+
+	lastDate = false;
+setInterval(function() {
+
+  function compareDates (argument) {
+    return (new Date(argument.created_at) > lastDate);
+  }
+
+   jQuery.ajax({
+      url: 'https://api.twitter.com/1.1/search/tweets.json?q=nasa&result_type=popular',
+      type: 'GET',
+      dataType: 'jsonp',
+      data: {q: encodeURIComponent('#test')},
+
+      success: function(data, textStatus, xhr) {
+          //If it's the first time running, prepend all tweets to the page
+          if(!lastDate) {
+            for(i in data.results) {
+                $('body').prepend('<p>'+data.results[i].from_user+': '+data.results[i].text+'</p>');
+            }
+          } else { //Only new tweets, filtered by date are added
+            var newMessages = data.results.filter(compareDates);
+              //Just for test
+              console.log(newMessages);
+            for(i in newMessages) {
+                $('body').prepend('<p>'+newMessages[i].from_user+': '+newMessages[i].text+'</p>');
+            }
+          }
+
+          lastDate = new Date(data.results[0].created_at);
+      }
+    });
+
+}, 10000);
+</script>
+
+<script type="text/javascript">
+	
+
+		window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));
+
+
+
+
+
+		
+</script>
+
+
+</body>
+</html>
