@@ -28,66 +28,27 @@
   </form>
 </div>
 
-<a href="#" onclick="return getOutput();"> test </a>
+<a href="#" onclick="return showHint(str);"> test </a>
 <div id="output">waiting for action</div>
+<p>Suggestions: <span id="txtHint"></span></p>
 
 
-<a class="twitter-timeline" href="https://twitter.com/TwitterDev/lists/national-parks?ref_src=twsrc%5Etfw">A Twitter List by TwitterDev</a> 
-<script type="text/javascript">
-	
-function getOutput() {
-$.ajax({
-  type: "GET",
-  url: "ex.php",
-  datatype: "json",
-  })
- .done(function( data, textStatus, jqXHR ) {
-     if ( console && console.log ) {
-         console.log( "La solicitud se ha completado correctamente." );
-         console.log( data );
-         console.log( textStatus );
-         console.log( jqXHR );
-     }
- })
- .fail(function( jqXHR, textStatus, errorThrown ) {
-     if ( console && console.log ) {
-         console.log( "La solicitud a fallado: " +  textStatus);
-     }
-});
-  return false;
-} 
-
-
-
-
-
-</script>
-
-<script type="text/javascript">
-	
-
-		window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  fjs.parentNode.insertBefore(js, fjs);
-
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
-
-  return t;
-}(document, "script", "twitter-wjs"));
-
-
-
-
-
-		
+<script>
+function showHint("casa") {
+    if (str.length == 0) { 
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "try.php?q=" + str, true);
+        xmlhttp.send();
+    }
+}
 </script>
 
 
