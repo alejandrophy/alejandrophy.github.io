@@ -28,13 +28,14 @@
   </form>
 </div>
 
-<a href="#" onclick="return showHint("casa");"> test </a>
+<a href="#" onclick="return showHint("c");"> test </a>
 <div id="output">waiting for action</div>
 <p>Suggestions: <span id="txtHint"></span></p>
 
 
 <script>
 function showHint(str) {
+	
     if (str.length == 0) { 
         document.getElementById("txtHint").innerHTML = "";
         return;
