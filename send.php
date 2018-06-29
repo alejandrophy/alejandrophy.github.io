@@ -11,8 +11,8 @@
 	    'consumer_secret' => "qRSoJao5OupneqGKnvpfITH22nopDulDxAXltkebv6uhzdjMD7
 "
 	);
-	$url = 'https://api.twitter.com/1.1/statuses/update.json';
-	$requestMethod = 'POST';
+	$url = 'https://api.twitter.com/1.1/search/tweets.json?q=nasa&result_type=popular';
+	$requestMethod = 'GET';
 	$postfields = array('status' => $tweet);
 	$twitter = new TwitterAPIExchange($settings);
 	$response =  $twitter->buildOauth($url, $requestMethod)
