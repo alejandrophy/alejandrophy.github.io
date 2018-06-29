@@ -28,44 +28,26 @@
   </form>
 </div>
 
-<a class="twitter-timeline" href="https://twitter.com/TwitterDev/lists/Colombia?ref_src=twsrc%5Etfw">A Twitter List by TwitterDev</a> 
+<a class="twitter-timeline" href="https://twitter.com/TwitterDev/lists/national-parks?ref_src=twsrc%5Etfw">A Twitter List by TwitterDev</a> 
 <script type="text/javascript">
 	
 
-	lastDate = false;
-setInterval(function() {
+	window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
 
-  function compareDates (argument) {
-    return (new Date(argument.created_at) > lastDate);
-  }
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
 
-   jQuery.ajax({
-      url: 'https://search.twitter.com/search.json',
-      type: 'GET',
-      dataType: 'jsonp',
-      data: {q: encodeURIComponent('#test')},
-
-      success: function(data, textStatus, xhr) {
-          //If it's the first time running, prepend all tweets to the page
-          if(!lastDate) {
-            for(i in data.results) {
-                $('body').prepend('<p>'+data.results[i].from_user+': '+data.results[i].text+'</p>');
-            }
-          } else { //Only new tweets, filtered by date are added
-            var newMessages = data.results.filter(compareDates);
-              //Just for test
-              console.log(newMessages);
-            for(i in newMessages) {
-                $('body').prepend('<p>'+newMessages[i].from_user+': '+newMessages[i].text+'</p>');
-            }
-          }
-
-          lastDate = new Date(data.results[0].created_at);
-      }
-    });
-
-}, 10000);
-
+  return t;
+}(document, "script", "twitter-wjs"));
 </script>
 </body>
 </html>
