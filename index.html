@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bootstrap Example</title>
+  <title>Macastanedag</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -26,6 +26,43 @@
   </form>
 </div>
 
+<script type="text/javascript">
+	
 
+	lastDate = false;
+setInterval(function() {
+
+  function compareDates (argument) {
+    return (new Date(argument.created_at) > lastDate);
+  }
+
+   jQuery.ajax({
+      url: 'http://search.twitter.com/search.json',
+      type: 'GET',
+      dataType: 'jsonp',
+      data: {q: encodeURIComponent('#test')},
+
+      success: function(data, textStatus, xhr) {
+          //If it's the first time running, prepend all tweets to the page
+          if(!lastDate) {
+            for(i in data.results) {
+                $('body').prepend('<p>'+data.results[i].from_user+': '+data.results[i].text+'</p>');
+            }
+          } else { //Only new tweets, filtered by date are added
+            var newMessages = data.results.filter(compareDates);
+              //Just for test
+              console.log(newMessages);
+            for(i in newMessages) {
+                $('body').prepend('<p>'+newMessages[i].from_user+': '+newMessages[i].text+'</p>');
+            }
+          }
+
+          lastDate = new Date(data.results[0].created_at);
+      }
+    });
+
+}, 10000);
+
+</script>
 </body>
 </html>
