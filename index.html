@@ -58,7 +58,9 @@ $(document).ready(function() {
         //alert(signature);
         //alert(accessToken+"-"+consumerKey);
         //alert(oauth_version+"-"+oauth_signature_method);
-        xhr.setRequestHeader('Authorization','OAuth oauth_consumer_key="BNzdCfnOGjW1v7sqJXeAd3Cew", oauth_nonce="qRSoJao5OupneqGKnvpfITH22nopDulDxAXltkebv6uhzdjMD7", oauth_signature="kQwyIhx78lZSk1wzAJlZeRsbjYTbBTZXBzcpvndLEJLY1%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp= "1359955650", oauth_token, "1012354410683527168-vYzIrkdncGmVbt5a4N7rIU0HohtFlP", oauth_version="1.0"');
+      //  xhr.setRequestHeader('Authorization','OAuth oauth_consumer_key="BNzdCfnOGjW1v7sqJXeAd3Cew", oauth_nonce="qRSoJao5OupneqGKnvpfITH22nopDulDxAXltkebv6uhzdjMD7", oauth_signature="kQwyIhx78lZSk1wzAJlZeRsbjYTbBTZXBzcpvndLEJLY1%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp= "1359955650", oauth_token, "1012354410683527168-vYzIrkdncGmVbt5a4N7rIU0HohtFlP", oauth_version="1.0"');
+
+      xhr.setRequestHeader('Authorization','OAuth oauth_callback="http%3A%2F%2Flocalhost%3A8888",oauth_consumer_key="86a507bfc290e0cfa0e1813f555f1cb2",oauth_nonce="9c89f47ef962a69f7666a35e27d9e7da",oauth_signature="8lqJ6/hOPUeYFpKtuVGilg3lmew=",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1477181081",oauth_version="1.0"')
     }
 
 });
