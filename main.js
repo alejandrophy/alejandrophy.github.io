@@ -54,12 +54,12 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.pageTitle = 'Acme Product Management';
+        this.pageTitle = 'Alejandro';
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'pm-root',
-            template: "\n    <nav class='navbar navbar-expand navbar-light bg-light'>\n        <a class='navbar-brand'>{{pageTitle}}</a>\n        <ul class='nav nav-pills'>\n          <li><a class='nav-link' routerLinkActive='active' [routerLink]=\"['/welcome']\">Home</a></li>\n          <li><a class='nav-link' routerLinkActive='active' [routerLink]=\"['/products']\">Product List</a></li>\n        </ul>\n    </nav>\n    <div class='container'>\n      <router-outlet></router-outlet>\n    </div>\n    ",
+            template: "\n    <nav class='navbar navbar-expand navbar-light bg-light'>\n        <ul class='nav nav-pills'>\n          <li><a class='nav-link' routerLinkActive='active' [routerLink]=\"['/welcome']\">Home</a></li>\n          <li><a class='nav-link' routerLinkActive='active' [routerLink]=\"['/products']\">Portafolio</a></li>\n          <li><a class='nav-link' routerLinkActive='active' [routerLink]=\"['/products']\">Fotografia</a></li>\n        </ul>\n    </nav>\n    <div class='container'>\n      <router-outlet></router-outlet>\n    </div>\n    ",
             styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
         })
     ], AppComponent);
@@ -136,7 +136,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n  <div class=\"card-header\">\n    {{pageTitle}}\n  </div>\n  <div class=\"card-body\">\n    <div class=\"container-fluid\">\n      <div class=\"text-center\">\n        <img src=\"./assets/images/logo.jpg\"\n             class=\"img-responsive center-block\"\n             style=\"max-height:300px;padding-bottom:50px\" />\n      </div>\n\n      <div class=\"text-center\">Developed by:</div>\n      <div class=\"text-center\">\n        <h3>Deborah Kurata</h3>\n      </div>\n\n      <div class=\"text-center\">@deborahkurata</div>\n      <div class=\"text-center\">\n        <a href=\"http://www.bit.ly/DeborahKsBlog\">www.bit.ly/DeborahKsBlog</a>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"card\">\n  <div class=\"card-header\">\n    {{pageTitle}}\n  </div>\n\n  <div class=\"card-body parallax\">\n    <div class=\"container-fluid\">\n      <div class=\"text-center\">\n        <img src=\"./assets/images/logo.jpg\"\n             class=\"img-responsive center-block\"\n             style=\"max-height:300px;padding-bottom:50px\" />\n      </div>\n\n      <div class=\"text-center\">Developed by:</div>\n      <div class=\"text-center\">\n        <h3>Manuel Alejandro Castañeda García</h3>\n      </div>\n\n      <div class=\"text-center\">@deborahkurata</div>\n      <div class=\"text-left\">\n        <a href=\"http://www.bit.ly/DeborahKsBlog\">Angular</a>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
