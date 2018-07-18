@@ -1,98 +1,14 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>Macastanedag</title>
   <meta charset="utf-8">
+  <title>APM</title>
+  <base href="/">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  <script src="oauth.js"></script>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<script type="text/javascript">
-window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  fjs.parentNode.insertBefore(js, fjs);
-
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
-
-  return t;
-}(document, "script", "twitter-wjs"));
-
-$('.jarallax').jarallax({
-    speed: 0.2
-});
-</script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <style>
-  body, html {
-    height: 100%;
-    width: 100%;
-}
-p, label {
-    color: white;
-}
-.parallax { 
-    /* The image used */
-    background-image: url("https://images7.alphacoders.com/568/568756.jpg");
-
-    /* Set a specific height */
-    height: 100%; 
-    width: 100%;
-
-
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.jarallax {
-  height: 100vh;
-}
-</style>
-
-
-
-<div class="container parallax" >
-<p>Manuel Alejandro Castañeda García</p>
-
-  <form action="/action_page.php">
-    <div class="form-group">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6"></div>
-          <div class="col-md-3"><label for="usr">Hashtag:</label></div>   
-      
-        </div>
-        <div class="row">
-          <div class="col-md-6 col-sm-12"> <input type="text" class="form-control" id="usr" name="username"></div>
-          <div class="col-md-3 col-sm-12" style="text-align: center;">  <button type="submit" class="btn btn-primary" >Buscar</button></div>
-         </div>
-   </div>
-   </div>
-
-  </form>
-</div>
-
-<div class="parallax">
-    <img class="" src="<https://artescritorio.com/wp-content/uploads/2016/12/ciencia-3.jpg>" alt="">
-</div>
-
-
-
-
-
-</body>
+  <pm-root></pm-root>
+<script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
 </html>
