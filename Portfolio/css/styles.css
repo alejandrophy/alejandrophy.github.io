@@ -1,0 +1,15 @@
+html{
+width: 100%;
+height: 100%;
+margin: 0;
+padding: 0;
+
+}
+body {
+    background:linear-gradient(to right, rgba(157,33, 178, 1) , rgba(237,131, 255, 1)) ;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+padding: 0;
+overflow:hidden;
+}
