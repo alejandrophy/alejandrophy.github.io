@@ -1,4 +1,4 @@
-<doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -17,13 +17,61 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/easing/EasePack.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenLite.min.js"></script>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Lobster|Playfair+Display" rel="stylesheet">
+<!-- font-family: 'Playfair Display', serif;
+font-family: 'Lobster', cursive;
+font-family: 'Dancing Script', cursive;-->
   <script src="js/sketch.js"></script>
 </head>
 
 <body>
     
-     
+  <header>
+    <nav class="navbar navbar-dark bg-inverse">
+      <div class="menu-icon">
+        <i class="fa fa-bars fa-2x"></i>
+      </div>
+      <div class="logo">
+        Alejandro
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Web Desing</a></li>
+          <li><a href="#">Photography</a></li>
+          
+        </ul>
+      </div>
+    </nav>
+  </header>
+     <div class="content">
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, maxime obcaecati aperiam quisquam ad commodi accusantium, quasi fugiat non animi nemo recusandae doloremque a laborum voluptatibus itaque aliquid accusamus officia.</p>
+     </div>
+     <script type="text/javascript">
 
+      // Menu-toggle button
+
+      $(document).ready(function() {
+            $(".menu-icon").on("click", function() {
+                  $("nav ul").toggleClass("showing");
+            });
+      });
+
+      // Scrolling Effect
+
+      $(window).on("scroll", function() {
+            if($(window).scrollTop()) {
+                  $('nav').addClass('black');
+            }
+
+            else {
+                  $('nav').removeClass('black');
+            }
+      })
+
+
+      </script>
 </body>
 </html>
