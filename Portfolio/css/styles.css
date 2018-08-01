@@ -27,3 +27,19 @@ header{
     font-family: 'Playfair Display', serif;
     color: white;   
 }
+
+.navbar{
+    width: 100%;
+    background: red;
+    text-align: center;
+}
+.collapse  {
+    width: 100%;
+    background: transparent;
+    text-align: center;
+}
+.nav{
+    width: 100%;
+    background: transparent;
+    text-align: center;
+}
