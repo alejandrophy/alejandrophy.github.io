@@ -20,7 +20,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
 
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <link rel="stylesheet" href="css/styles.css">
   <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.js"></script>
@@ -40,20 +40,21 @@ font-family: 'Dancing Script', cursive;-->
 <body>
     
   <header>
-    <div class="container">
+  <!--  <div class="container">
       <div class="row"> 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-122">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-inverse">
-    
-        <button class="navbar-toggler navbar-expand-lg" type="button" data-toggle="collapse" data-target="#CollapseNavbar">
-        <!--<i class="fa fa-bars fa-2x"></i>-->lalala
-      </button>
-        <div class="collapse navbar-collapse" id="CollapseNavbar">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-122">-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="navbar-brand">
         Alejandro
       </div>
-     
-        <ul class="nav navbar-nav">
+        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#CollapseNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          
+        <span class=" navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="CollapseNavbar">
+         
+         
+        <ul class="navbar-nav  mr-auto">
           <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
           <li class="nav-item active"><a class="nav-link" href="#">About</a></li>
           <li class="nav-item active"><a class="nav-link" href="#">Web Desing</a></li>
@@ -65,36 +66,13 @@ font-family: 'Dancing Script', cursive;-->
 
 
     </nav>
+<!--  </div>
   </div>
-  </div>
-</div>
+</div>-->
   </header>
      <div class="content">
-       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, maxime obcaecati aperiam quisquam ad commodi accusantium, quasi fugiat non animi nemo recusandae doloremque a laborum voluptatibus itaque aliquid accusamus officia.</p>
+       <p class="textWhite">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, maxime obcaecati aperiam quisquam ad commodi accusantium, quasi fugiat non animi nemo recusandae doloremque a laborum voluptatibus itaque aliquid accusamus officia.</p>
      </div>
-     <script type="text/javascript">
-
-      // Menu-toggle button
-
-      $(document).ready(function() {
-            $(".menu-icon").on("click", function() {
-                  $("nav ul").toggleClass("showing");
-            });
-      });
-
-      // Scrolling Effect
-
-      $(window).on("scroll", function() {
-            if($(window).scrollTop()) {
-                  $('nav').addClass('black');
-            }
-
-            else {
-                  $('nav').removeClass('black');
-            }
-      })
-
-
-      </script>
+    
 </body>
 </html>
