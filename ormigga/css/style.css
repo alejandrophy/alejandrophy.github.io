@@ -1,0 +1,61 @@
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+
+header{
+    border: solid;
+    border-color: blue;
+    border-radius: 25px;
+    padding-bottom: 1%;
+    margin: 3%;
+}
+
+.Nombre{
+    font-family: 'Slabo 27px', serif;
+    color: blue;
+}
+.error{
+    background-color: red;
+}
+.centrarTexto{
+    text-align: center;
+}
+
+h3 {
+    display: inline-table;
+    font-family: 'Slabo 27px', serif;
+    color: grey;
+}
+
+h4 {
+    display: inline-table;
+    font-family: 'Slabo 27px', serif;
+    color: grey;
+}
+
+.icono{
+    padding-right: 5px;
+    opacity: 0.5;
+}
+
+.colorLabel{
+    color: blue;
+}
+.formSection{
+    margin: 5%;
+    padding-top: 3%; 
+}
+
+.selectors{
+    padding-top: 1%; 
+    padding-bottom: 1%;
+}
+.datos{
+    padding-top: 3%; 
+    padding-bottom: 3%;
+}
+
+.margenes{   
+    margin: 2%;
+}
