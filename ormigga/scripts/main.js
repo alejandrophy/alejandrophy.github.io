@@ -2,9 +2,16 @@ angular.module('todoApp', ['ngCookies','720kb.datepicker', 'ui.grid', 'ui.grid.s
   .controller('AppController', ['$cookies', '$scope','$http','$filter', function( $cookies,$scope, $http, $filter) {
     
     var vm= this;
+     //Variable para controlar el estado de llenado del formulario y controlar vistas
+     vm.formularioLleno=false;
+     vm.mostrarGrilla=false;
+     vm.mostrarError=false;
+     vm.fechaValida=false;
+
+     
 
     this.myDate = new Date();
-  this.isOpen = false;
+    this.isOpen = false;
     //Clase que contiene los valores del formulario
     vm.formularioBusqueda={
         nombres:'',
@@ -17,38 +24,29 @@ angular.module('todoApp', ['ngCookies','720kb.datepicker', 'ui.grid', 'ui.grid.s
      vm.favoriteCookie = '';
     // Setting a cookie
      
-
-    //Variable para controlar el estado de llenado del formulario y controlar vistas
-    vm.formularioLleno=false;
-    vm.mostrarGrilla=false;
-    vm.mostrarError=false;
+    vm.numeroRepositorios=0;
+   
     //Arreglo de Objeto con repositorios
-    vm.datosRepositorio=[{
-      name:'',
-      language:'',
-      default_branch:'',
-      html_url:'',
-      description:''
-    }];
+    vm.datosRepositorio=[];
     //Función Para verificar el envío del formulario
     vm.enviarFormulario = function() {
-        var a ='aaa';
-        if(vm.formulario.$valid){
-          vm.gridOptions.data = $filter('filter')(vm.datosRepositorio, vm.filterOptions.filterText);
-            
-            $cookies.put('nombres', vm.formularioBusqueda.nombres);
-            vm.favoriteCookie = $cookies.get('nombres');
-            vm.consultarReopsitorios();    
-            vm.formularioLleno=true;     
+        if(vm.formulario.$valid){     
+          vm.fechaValida=false;                  
+            $cookies.put('datosFormularios', vm.formularioBusqueda);
+            vm.consularUsuario(vm.formularioBusqueda.usuarioGithub);                
         }
         else{
-
+          if(vm.formulario.fechaNac.$error.required)
+            vm.fechaValida=true;
+          
             vm.formularioLleno=false;
         }
 
-
       };
-
+      
+      vm.fechaSelecionada= function(){
+        vm.fechaValida=false;
+      }
       vm.nuevoFormulario = function() {        
             vm.formularioLleno=false;  
             vm.mostrarGrilla=false;  
@@ -60,34 +58,53 @@ angular.module('todoApp', ['ngCookies','720kb.datepicker', 'ui.grid', 'ui.grid.s
               correo:'',
               usuarioGithub:''
           }; 
+          vm.datosRepositorio=[];
       };
       //consulta usuario github
-      vm.consularUsuario= function(){
-        $http.get("https://api.github.com/users/" + vm.formularioBusqueda.usuarioGithub)
+      vm.consularUsuario= function(user){
+        var numRepos=0;
+        var pg=1;
+        $http.get("https://api.github.com/users/" + user)
                .then(function (data) {
-                  if (data.name == "") data.name = data.login;
-                  $scope.user = data;
-                  $scope.loaded = true;
+                numRepos=data.data.public_repos;               
+                vm.consultarRepositoriosPg(numRepos, pg, user);      
                },function (error) {
-                  $scope.userNotFound = true;
-               });
+                if(error.data){            
+                vm.error=true;
+                vm.formularioLleno=true;  
+                vm.mostrarGrilla=false;
+                vm.mostrarError=true;
+              }}
+            );          
       }
-      //consulta repositorios Usuario
-      vm.consultarReopsitorios=function(){
 
-        $http.get("https://api.github.com/users/" + vm.formularioBusqueda.usuarioGithub + "/repos").then(function (data) {
-          vm.datosRepositorio= angular.copy(data.data);
-          vm.gridOptions.data = $filter('filter')(vm.datosRepositorio, vm.filterOptions.filterText);      
-          vm.mostrarGrilla=true;
-         },function (error) {
-            if(error.data){
-          vm.mostrarGrilla=false;
-          vm.mostrarError=true;
-          }
+      
+      //consulta repositorios Usuario  
+      vm.consultarRepositoriosPg=function(numRepos, pg, user){
 
-       });
-      } 
-        
+        if(vm.datosRepositorio.length<numRepos){
+        $http.get("https://api.github.com/users/" + user + "/repos?per_page=100&page="+pg).then(function (data) {
+          if(pg<=1)
+           vm.datosRepositorio=angular.copy(data.data);
+          else
+            vm.datosRepositorio=vm.datosRepositorio.concat(data.data);
+         //llamo recursivamente a la función
+          vm.consultarRepositoriosPg(numRepos, pg+1, user);
+          vm.gridOptions.data = vm.datosRepositorio;
+          vm.formularioLleno=true; 
+          vm.gridOptions.data = vm.datosRepositorio;               
+          vm.mostrarGrilla=true;          
+           
+           },function (error) {
+              if(error.data){            
+              vm.error=true;
+              vm.mostrarGrilla=false;
+              vm.mostrarError=true;
+            }
+         });
+        }
+      }
+
       //refresca los datos de la grilla al aplicar el filtro
         vm.refreshData = function() {
           if(vm.filtro.myInput.$valid){
@@ -98,8 +115,7 @@ angular.module('todoApp', ['ngCookies','720kb.datepicker', 'ui.grid', 'ui.grid.s
           filterText: ''
       };
         
-       // opciones de grilla
-        
+       // opciones de grilla        
         vm.gridOptions = {
           data: vm.datosRepositorio,            
           enableRowSelection: true,
@@ -108,8 +124,6 @@ angular.module('todoApp', ['ngCookies','720kb.datepicker', 'ui.grid', 'ui.grid.s
           enableRowSelection: true,
           enableRowHeaderSelection: true,
           multiSelect: true,
-         
-          
           columnDefs: [ 
             {field: 'name', enableSorting: true, 
              displayName: 'Repositorio',
@@ -120,12 +134,30 @@ angular.module('todoApp', ['ngCookies','720kb.datepicker', 'ui.grid', 'ui.grid.s
             {field: 'html_url', width: '30%', displayName: 'Url'},
             {field: 'default_branch', width: '10%', displayName: 'Branch'}   
         ]
-        };
-        
+        };        
         vm.gridOptions.data =  vm.datosRepositorio;
+  vm.reset2=function(){
 
+    vm.formularioLleno=false;
+     vm.mostrarGrilla=false;
+     vm.mostrarError=false;
+    vm.formularioBusqueda={
+        nombres:'',
+        cedula:'',
+        fechaNacimiento: null,
+        correo:'',
+        usuarioGithub:''
+    };
 
-      
-
-  
+     vm.favoriteCookie = '';
+     
+    vm.numeroRepositorios=0;   
+    vm.datosRepositorio=[{
+      name:'',
+      language:'',
+      default_branch:'',
+      html_url:'',
+      description:''
+    }];
+  }
   }]);

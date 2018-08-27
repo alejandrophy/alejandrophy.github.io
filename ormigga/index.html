@@ -34,77 +34,75 @@
     <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css">
     <script src="https://ui-grid.info/release/ui-grid.js"></script>
     <link rel="stylesheet" href="https://ui-grid.info/release/ui-grid.css" type="text/css">
+ 
   </head>
   <body>
 
  
-    <div ng-controller="AppController as vm">
-  <header  ng-show="vm.formularioLleno">   
+<div ng-controller="AppController as vm">
+  
 
-    <div >
-        <div class="container-fluid">
-            <div class="row justify-content-md-center centrarTexto">
-                    <div class="col-md-12"></i> <h2 class="Nombre">{{vm.formularioBusqueda.nombres}}</h2></div>
+<header ng-init="vm.reset()">  
+            <div ng-if="vm.formularioLleno" class="header">
+                <div class="container-fluid">
+                    <div class="row justify-content-md-center centrarTexto">
+                            <div class="col-md-12"></i> <h2 class="Nombre">{{vm.formularioBusqueda.nombres}}</h2></div>
+                    </div>
+                    <div class="row datos">
+                        <div class="col-md-3 centrarTexto"><i class="fas fa-id-card icono"></i><h4>{{vm.formularioBusqueda.cedula}}</h4></div>
+                        <div class="col-md-3 centrarTexto"><i class="fas fa-calendar-alt icono"></i><h4>{{vm.formularioBusqueda.fechaNacimiento}}</h4></div>
+                        <div class="col-md-3 centrarTexto"><i class="fas fa-at icono"></i><h4>{{vm.formularioBusqueda.correo}}</h4></div>
+                        <div class="col-md-3 centrarTexto"><i class="fab fa-github icono"></i><h4>{{vm.formularioBusqueda.usuarioGithub}}</h4></div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                            <input class="btn btn-outline-primary" ng-click="vm.nuevoFormulario()" type="submit" value="Nueva Consulta">
+                    </div>             
+                </div>        
             </div>
-            <div class="row datos">
-                <div class="col-md-3 centrarTexto"><i class="fas fa-id-card icono"></i><h4>{{vm.formularioBusqueda.cedula}}</h4></div>
-                <div class="col-md-3 centrarTexto"><i class="fas fa-calendar-alt icono"></i><h4>{{vm.formularioBusqueda.fechaNacimiento}}</h4></div>
-                <div class="col-md-3 centrarTexto"><i class="fas fa-at icono"></i><h4>{{vm.formularioBusqueda.correo}}</h4></div>
-                <div class="col-md-3 centrarTexto"><i class="fab fa-github icono"></i><h4>{{vm.formularioBusqueda.usuarioGithub}}</h4></div>
-            </div>
-
-            <div class="row justify-content-md-center">
-                    <input class="btn btn-outline-primary" ng-click="vm.nuevoFormulario()" type="submit" value="Nueva Consulta">
-                    </div> 
-            
-        </div>
-        
-    </div>
     </header>
-
-
 
     <div class="formSection" ng-show="!vm.formularioLleno">
         <form name="vm.formulario" >
-
-                <div class="container-fluid">
-                        
+                <div class="container-fluid">                        
                         <div class="row ">
                             <div class="col-md-4 selectors">
-                                <i class="fas fa-user-alt icono"></i><label class="colorLabel icono" for="basic-url">Nombre:</label>
+                                <i class="fas fa-user-alt icono"></i><label class="colorLabel " for="basic-url">Nombre: *</label>
                                 <input name="formNombres" type="text" ng-model="vm.formularioBusqueda.nombres" class="form-control" size="30" placeholder="Nombres y Apellidos" required></div>
                             <div class="col-md-4 selectors">
-                                <i class="fas fa-id-card icono"></i></i><label class="colorLabel" for="basic-url">Cédula:</label>
-                                <input name="formCedula" type="text" ng-model="vm.formularioBusqueda.cedula" class="form-control" size="30" placeholder="Cédula" required></div>
+                                <i class="fas fa-id-card icono"></i></i><label class="colorLabel" for="basic-url">Cédula: *</label>
+                                <input name="formCedula" type="number" ng-model="vm.formularioBusqueda.cedula" class="form-control"  placeholder="Cédula" required></div>
                             <div class="col-md-4 selectors">
-                                <i class="fas fa-calendar-alt icono"></i></i><label class="colorLabel" for="basic-url">Fecha de Nacimiento:</label>
-                               
-                                <datepicker date-format="yyyy-MM-dd" selector="form-control">                                        
-                                            <input class="form-control" ng-model="vm.formularioBusqueda.fechaNacimiento" placeholder="Fecha Nacimiento"/>     
-                                </datepicker>
+                                <i class="fas fa-calendar-alt icono"></i></i><label class="colorLabel" for="basic-url">Fecha de Nacimiento: *</label>                               
+                                <datepicker date-format="yyyy-MM-dd" selector="form-control" >                                        
+                                            <input  name="fechaNac" ng-required="true" ng-change="vm.fechaSelecionada()" type="text" class="form-control" ng-model="vm.formularioBusqueda.fechaNacimiento" ng-readonly="true" placeholder="Fecha Nacimiento" required/>     
+                                </datepicker> 
+                                <label ng-show="vm.fechaValida" style="color: red">Inserte la fecha</label>                            
                             </div>
                             <div class="col-md-4 selectors">
-                                    <i class="fas fa-at icono"></i><label class="colorLabel" for="basic-url">Correo:</label>
+                                    <i class="fas fa-at icono"></i><label class="colorLabel" for="basic-url">Correo: *</label>
                                 <input name="formCorreo" type="email" ng-model="vm.formularioBusqueda.correo" class="form-control" size="30" placeholder="Correo" required></div>
                             <div class="col-md-4 selectors">
-                                <i class="fab fa-github icono"></i><label class="colorLabel" for="basic-url">Usuario Github:</label>
+                                <i class="fab fa-github icono"></i><label class="colorLabel" for="basic-url">Usuario Github: *</label>
                                 <input name="formGitHub" type="text" ng-model="vm.formularioBusqueda.usuarioGithub" class="form-control" size="30" placeholder="Usuario GitHub" required></div>
                         </div>    
                         <div class="row justify-content-md-center">
                         <input class="btn btn-outline-primary" ng-click="vm.enviarFormulario()" type="submit" value="Consultar">
                         </div>  
-                    </div>    
-            
-            
-        </form>
-
+                    </div>      
+            </form>
     </div>
 
     <div class="container-fluid " ng-if="vm.mostrarError">
-    <div class="row margenes justify-content-md-center centrarTexto ">
-            <div class="col-md-12 datos error" ><label><h5>Error: El Usuario {{vm.formularioBusqueda.usuarioGithub}} no se ha encontrado</h5></label></div>
+        <div class="row margenes justify-content-md-center centrarTexto ">
+                <div class="col-md-12 datos error" ><label><h5>Error: El Usuario {{vm.formularioBusqueda.usuarioGithub}} no se ha encontrado</h5></label></div>
+        </div>
     </div>
-</div>
+
+
+    
+
+
+
     <div class="container-fluid " ng-if="vm.mostrarGrilla">
         <div class="row margenes ">
                 <div class="col-md-12 ">
@@ -119,12 +117,7 @@
         <div class="row margenes ">
                 <div class="col-md-12 datos " id="tntGridServices" ui-grid="vm.gridOptions" ui-grid-selection ui-grid-pagination></div>
         </div>
-    </div>
-
-    
-      
-
-
+    </div>  
 </div>
 
 
