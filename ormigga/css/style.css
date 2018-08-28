@@ -30,6 +30,9 @@
   .centrarTexto{
       text-align: center;
   }
+  .centrarBoton{
+    display: block; margin: 0 auto;
+  }
   
   h3 {
       display: inline-table;
@@ -68,3 +71,29 @@
   .margenes{   
       margin: 2%;
   }
+
+.tablaRepos {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tablaRepos  td, .tablaRepos  th {
+    border: 1px solid #ddd;
+    padding: 8px;   
+        width:20% !important;        
+        word-wrap:break-word;
+   
+}
+
+.tablaRepos  tr:nth-child(even){background-color: #f2f2f2;}
+
+.tablaRepos  tr:hover {background-color: #ddd;}
+
+.tablaRepos  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: lightblue;
+    color: white;
+}

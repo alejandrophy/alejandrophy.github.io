@@ -1,5 +1,5 @@
-angular.module('todoApp', ['ngCookies','720kb.datepicker', 'ui.grid', 'ui.grid.selection', 'ui.grid.pagination', 'ui.grid.edit'])
-  .controller('AppController', ['$cookies', '$scope','$http','$filter', function( $cookies,$scope, $http, $filter) {
+angular.module('todoApp', ['ngCookies','720kb.datepicker'])
+  .controller('AppController', ['$cookies', '$scope','$http','$filter' , function( $cookies,$scope, $http, $filter) {
     
     var vm= this;
      //Variable para controlar el estado de llenado del formulario y controlar vistas
@@ -90,9 +90,10 @@ angular.module('todoApp', ['ngCookies','720kb.datepicker', 'ui.grid', 'ui.grid.s
             vm.datosRepositorio=vm.datosRepositorio.concat(data.data);
          //llamo recursivamente a la función
           vm.consultarRepositoriosPg(numRepos, pg+1, user);
-          vm.gridOptions.data = vm.datosRepositorio;
+          vm.datosFiltrados = $filter('filter')(vm.datosRepositorio, "");
+          vm.paginar();
           vm.formularioLleno=true; 
-          vm.gridOptions.data = vm.datosRepositorio;               
+                        
           vm.mostrarGrilla=true;          
            
            },function (error) {
@@ -106,58 +107,56 @@ angular.module('todoApp', ['ngCookies','720kb.datepicker', 'ui.grid', 'ui.grid.s
       }
 
       //refresca los datos de la grilla al aplicar el filtro
+      vm.datosRepositorioModel=[];
+      vm.datosFiltrados=[];
+      vm.filterOptions = {
+        filterText: ''
+    };
         vm.refreshData = function() {
           if(vm.filtro.myInput.$valid){
-          vm.gridOptions.data = $filter('filter')(vm.datosRepositorio, {name:vm.filterOptions.filterText});
+            vm.datosFiltrados = $filter('filter')(vm.datosRepositorio, {name:vm.filterOptions.filterText});            
+            vm.currentIndex=0;
+            vm.paginar();
           }
         };
-        vm.filterOptions = {
-          filterText: ''
+        
+        vm.propertyName = 'name';
+        vm.reverse = false;
+
+      vm.sortBy = function(propertyName) {
+        vm.reverse = (vm.propertyName === propertyName) ? !vm.reverse : false;
+        vm.propertyName = propertyName;
+        vm.datosRepositorio=$filter('orderBy')(vm.datosRepositorio, propertyName, vm.reverse )
+        vm.refreshData();
       };
         
-       // opciones de grilla        
-        vm.gridOptions = {
-          data: vm.datosRepositorio,            
-          enableRowSelection: true,
-          paginationPageSizes: [5, 10, 25],
-          paginationPageSize: 5,
-          enableRowSelection: true,
-          enableRowHeaderSelection: true,
-          multiSelect: true,
-          columnDefs: [ 
-            {field: 'name', enableSorting: true, 
-             displayName: 'Repositorio',
-          width: '15%'},
-            {field: 'language',name: 'language', width: '10%', displayName: 'Lenguaje'},
-            {field: 'description',width: '30%',
-          },
-            {field: 'html_url', width: '30%', displayName: 'Url'},
-            {field: 'default_branch', width: '10%', displayName: 'Branch'}   
-        ]
-        };        
-        vm.gridOptions.data =  vm.datosRepositorio;
-  vm.reset2=function(){
+      vm.currentPage = 0;
+      vm.pageSize = 5; // Esta la cantidad de registros que deseamos mostrar por página
+      vm.pages = 0;
+      vm.currentPage=1
 
-    vm.formularioLleno=false;
-     vm.mostrarGrilla=false;
-     vm.mostrarError=false;
-    vm.formularioBusqueda={
-        nombres:'',
-        cedula:'',
-        fechaNacimiento: null,
-        correo:'',
-        usuarioGithub:''
-    };
+      vm.totalFiltrados = 0;
+      vm.currentIndex=0
 
-     vm.favoriteCookie = '';
-     
-    vm.numeroRepositorios=0;   
-    vm.datosRepositorio=[{
-      name:'',
-      language:'',
-      default_branch:'',
-      html_url:'',
-      description:''
-    }];
-  }
+      vm.paginar = function(){   
+        vm.pages = Math.ceil(vm.datosFiltrados.length/vm.pageSize);  
+        vm.currentPage=Math.floor(vm.currentIndex/vm.pageSize )+1;   
+        vm.datosRepositorioModel=vm.datosFiltrados.slice(vm.currentIndex,vm.currentIndex+5);
+      };
+
+      vm.nextPage= function(){
+        vm.currentIndex=vm.currentIndex+5;
+        if(vm.currentIndex > vm.datosFiltrados.length)
+          vm.currentIndex =vm.currentIndex-5;
+        vm.paginar(); 
+      }
+      vm.lastPage= function(){
+        vm.currentIndex=vm.currentIndex-5;
+        if(vm.currentIndex<0)
+          vm.currentIndex=0
+        vm.paginar(); 
+      }
+    
+  
+
   }]);
