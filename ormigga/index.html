@@ -110,39 +110,40 @@
 
         <div class="row margenes">
 
-            <table class="tablaRepos "   >
+            <table class="tablaRepos table"   >
                 <tr>
-                  <th ng-style="{'width': 5%h}" >
+                  <th scope="col" >
                     <button class="btn btn-outline-light" ng-click="vm.sortBy('name')">Repositorio</button>
                     <i class="fas fa-caret-up"  ng-show="vm.propertyName === 'name' && vm.reverse " ></i><i class="fas fa-caret-down"  ng-show="vm.propertyName === 'name' && !vm.reverse " ></i>
                   </th>
-                  <th >
+                  <th scope="col">
                     <button class="btn btn-outline-light" ng-click="vm.sortBy('language')">Lenguaje</button>
                     <i class="fas fa-caret-up"  ng-show="vm.propertyName === 'language' && vm.reverse " ></i><i class="fas fa-caret-down"  ng-show="vm.propertyName === 'language' && !vm.reverse " ></i>
                   </th>
-                  <th >
+                  <th scope="col" >
                     <button class="btn btn-outline-light" ng-click="vm.sortBy('description')">Descripción</button>
                     <i class="fas fa-caret-up"  ng-show="vm.propertyName === 'description' && vm.reverse " ></i><i class="fas fa-caret-down"  ng-show="vm.propertyName === 'description' && !vm.reverse " ></i>
                   </th>
-                  <th >
+                  <th scope="col" >
                     <button class="btn btn-outline-light" ng-click="vm.sortBy('html_url')">URL</button>
                     <i class="fas fa-caret-up"  ng-show="vm.propertyName === 'html_url' && vm.reverse " ></i><i class="fas fa-caret-down"  ng-show="vm.propertyName === 'html_url' && !vm.reverse " ></i>
                   </th>
-                  <th >
+                  <th scope="col">
                     <button class="btn btn-outline-light" ng-click="vm.sortBy('default_branch')">Branch</button>
                     <i class="fas fa-caret-up"  ng-show="vm.propertyName === 'default_branch' && vm.reverse " ></i><i class="fas fa-caret-down"  ng-show="vm.propertyName === 'default_branch' && !vm.reverse " ></i>
                   </th>
                 </tr>
                 <tr ng-repeat="item in vm.datosRepositorioModel   ">
-                  <td style="width:120px">{{item.name}}</td>
-                  <td>{{item.language}}</td>
-                  <td>{{item.description}}</td>
-                  <td>{{item.html_url}}</td>
-                  <td>{{item.default_branch}}</td>
+                  <td scope="row">{{item.name}}</td>
+                  <td scope="row">{{item.language}}</td>
+                  <td scope="row">{{item.description}}</td>
+                  <td scope="row">{{item.html_url}}</td>
+                  <td scope="row">{{item.default_branch}}</td>
                 </tr>
               </table>           
               
         </div>
+
         <div class="row margenes justify-content-md-center centrarTexto">
         <div class='btn-group'>
             <button type='button' class="btn btn-outline-primary" ng-click="vm.lastPage()">&laquo;</button>
