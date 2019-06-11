@@ -43,7 +43,7 @@
 
     function validate (input) {
         if($(input).val().trim()=="Vanesha") {
-            window.location.pathname =  "/surface-viewer-demo.html";
+            window.location =  "https://alejandrophy.github.io/Cu/surface-viewer-demo.html";
                 return false;
         }
         else {
